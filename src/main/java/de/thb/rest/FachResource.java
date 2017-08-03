@@ -14,12 +14,12 @@ import javax.ws.rs.Path;
 public class FachResource {
     @Inject
     FachRepository repo;
-/*
+
     @GET
     public JsonArray getFachs(){
         return repo.getAll().stream()
                 .map(c ->
-                        Json.createArrayBuilder()
+                        Json.createObjectBuilder()
                         .add("name", c.getName())
                         .add("kommentar", c.getKommentar())
                         .build())
@@ -27,8 +27,7 @@ public class FachResource {
                         , JsonArrayBuilder::add
                         , JsonArrayBuilder::add)
                 .build();
-
     }
-*/
+
 
 }
