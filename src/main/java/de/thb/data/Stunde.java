@@ -72,4 +72,73 @@ public class Stunde {
 		this.ordnung = ordnung;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getKommentar() {
+		return kommentar;
+	}
+
+	public void setKommentar(String kommentar) {
+		this.kommentar = kommentar;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Stunde stunde = (Stunde) o;
+
+		if (id != stunde.id) return false;
+		if (ordnung != stunde.ordnung) return false;
+		if (name != null ? !name.equals(stunde.name) : stunde.name != null) return false;
+		if (kommentar != null ? !kommentar.equals(stunde.kommentar) : stunde.kommentar != null) return false;
+		if (sequenz != null ? !sequenz.equals(stunde.sequenz) : stunde.sequenz != null) return false;
+		if (neueFertigkeiten != null ? !neueFertigkeiten.equals(stunde.neueFertigkeiten) : stunde.neueFertigkeiten != null)
+			return false;
+		if (zufestigendeFertigkeiten != null ? !zufestigendeFertigkeiten.equals(stunde.zufestigendeFertigkeiten) : stunde.zufestigendeFertigkeiten != null)
+			return false;
+		return inhalt != null ? inhalt.equals(stunde.inhalt) : stunde.inhalt == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id;
+		result = 31 * result + (name != null ? name.hashCode() : 0);
+		result = 31 * result + (kommentar != null ? kommentar.hashCode() : 0);
+		result = 31 * result + (sequenz != null ? sequenz.hashCode() : 0);
+		result = 31 * result + (neueFertigkeiten != null ? neueFertigkeiten.hashCode() : 0);
+		result = 31 * result + (zufestigendeFertigkeiten != null ? zufestigendeFertigkeiten.hashCode() : 0);
+		result = 31 * result + (inhalt != null ? inhalt.hashCode() : 0);
+		result = 31 * result + ordnung;
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "Stunde{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", kommentar='" + kommentar + '\'' +
+				", sequenz=" + sequenz +
+				", neueFertigkeiten=" + neueFertigkeiten +
+				", zufestigendeFertigkeiten=" + zufestigendeFertigkeiten +
+				", inhalt='" + inhalt + '\'' +
+				", ordnung=" + ordnung +
+				'}';
+	}
 }
