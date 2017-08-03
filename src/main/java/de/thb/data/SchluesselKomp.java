@@ -1,8 +1,8 @@
 package de.thb.data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 public class SchluesselKomp {
@@ -18,13 +18,13 @@ public class SchluesselKomp {
 	private String kommentar;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
-	private List<de.thb.fbi.project.koma.data.KompBereich> kompBereiche;
+	private Set<KompBereich> kompBereiche;
 
-	public List<KompBereich> getKompBereiche() {
+	public Set<KompBereich> getKompBereiche() {
 		return kompBereiche;
 	}
 
-	public void setKompBereiche(List<KompBereich> kompBereiche) {
+	public void setKompBereiche(Set<KompBereich> kompBereiche) {
 		this.kompBereiche = kompBereiche;
 	}
 

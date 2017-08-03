@@ -2,8 +2,8 @@ package de.thb.data;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 
 @Entity
@@ -23,7 +23,7 @@ public class Sequenz  {
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "sequenz")
 	@OrderBy("odnung")
-	private List<Stunde> stunden;
+	private Set<Stunde> stunden;
 
 	private int ordnung;
 
@@ -35,11 +35,11 @@ public class Sequenz  {
 		this.ordnung = ordnung;
 	}
 
-	public List<Stunde> getStunden() {
+	public Set<Stunde> getStunden() {
 		return stunden;
 	}
 
-	public void setStunden(List<Stunde> stunden) {
+	public void setStunden(Set<Stunde> stunden) {
 		this.stunden = stunden;
 	}
 
