@@ -1,16 +1,19 @@
-package de.thb.fbi.project.koma.repository.impl;
+package de.thb.repository.impl;
 
-import java.util.List;
+import de.thb.data.Fertigkeit;
+import de.thb.data.Klassenstufe;
+import de.thb.repository.api.KlasseRepository;
 
-import de.thb.fbi.project.generic.repository.impl.JPANamedEntityRepository;
-import de.thb.fbi.project.koma.data.Fertigkeit;
-import de.thb.fbi.project.koma.data.Klassenstufe;
-import de.thb.fbi.project.koma.repository.api.KlasseRepository;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.Set;
 
-public class JPAKlasseRepository extends JPANamedEntityRepository<Klassenstufe> implements KlasseRepository {
+public class JPAKlasseRepository implements KlasseRepository {
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
-	public List<Klassenstufe> findByFertigkeit(Fertigkeit fertigkeit) {
+	public Set<Klassenstufe> findByFertigkeit(Fertigkeit fertigkeit) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,20 +1,19 @@
-package de.thb.fbi.project.koma.repository.impl;
+package de.thb.repository.impl;
 
-import javax.inject.Inject;
+import de.thb.data.KompNiveau;
+import de.thb.repository.api.KompNiveauRepository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.validation.constraints.NotNull;
 
-import org.slf4j.Logger;
 
-import de.thb.fbi.project.generic.repository.impl.JPANamedEntityRepository;
-import de.thb.fbi.project.koma.data.KompNiveau;
-import de.thb.fbi.project.koma.repository.api.KompNiveauRepository;
-
-public class JPAKompNiveauRepository extends JPANamedEntityRepository<KompNiveau> implements KompNiveauRepository {
-
-	@Inject
-	private Logger logger;
+public class JPAKompNiveauRepository implements KompNiveauRepository {
+	@PersistenceContext
+	private EntityManager em;
 
 	/**
 	 * "select k from KompNiveau k where k.name = '" + name +"'" CriteriaQuery
@@ -25,7 +24,6 @@ public class JPAKompNiveauRepository extends JPANamedEntityRepository<KompNiveau
 	 */
 	@Override
 	public KompNiveau findByCriteria(String aString) {
-		logger.info("-------> findByCriteria {}", aString);
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<KompNiveau> criteriaQuery = cb.createQuery(KompNiveau.class);
 		Root<KompNiveau> kompNiveauRoot = criteriaQuery.from(KompNiveau.class);
@@ -36,8 +34,18 @@ public class JPAKompNiveauRepository extends JPANamedEntityRepository<KompNiveau
 	}
 
 	@Override
+	public void update(@NotNull KompNiveau kompNiveau) {
+		if(find(kompNiveau.getId()) != null){
+			em.merge(kompNiveau);
+		}
+	}
+	@Override
+	public KompNiveau find(int id) {
+		return em.find(KompNiveau.class, id);
+	}
+
+	@Override
 	public void umbenenne(String newName, String oldName) {
-		logger.info("-------> umbenenne {} fur {}", newName, oldName);
 		KompNiveau kn = new KompNiveau();
 		kn = findByCriteria(oldName);
 		kn.setName(newName);
@@ -48,11 +56,10 @@ public class JPAKompNiveauRepository extends JPANamedEntityRepository<KompNiveau
 	public void deleteByCriteria(KompNiveau kompNiveau) {
 		KompNiveau kn = new KompNiveau();
 		kn = findByCriteria(kompNiveau.getName());
-		logger.info("-------> found {}", kn.toString());
 		if (kn != null) {
 			em.remove(kn);
 		}
-		logger.info("-------> removed {}", kn.toString());
 	}
+
 
 }

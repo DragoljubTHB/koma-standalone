@@ -1,9 +1,7 @@
-package de.thb.fbi.project.koma.repository.impl;
+package de.thb.repository.impl;
 
-import de.thb.fbi.project.generic.repository.impl.JPANamedEntityRepository;
-import de.thb.fbi.project.koma.data.Sequenz;
-import de.thb.fbi.project.koma.repository.api.SequenzRepository;
+import de.thb.repository.api.SequenzRepository;
 
-public class JPASequenzRepository extends JPANamedEntityRepository<Sequenz> implements SequenzRepository {
+public class JPASequenzRepository implements SequenzRepository {
 
 }

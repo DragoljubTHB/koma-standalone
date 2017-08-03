@@ -1,18 +1,20 @@
-package de.thb.fbi.project.koma.repository.impl;
+package de.thb.repository.impl;
 
-import java.util.List;
+import de.thb.data.Fach;
+import de.thb.data.Fertigkeit;
+import de.thb.repository.api.FachRepository;
 
-import de.thb.fbi.project.generic.repository.impl.JPANamedEntityRepository;
-import de.thb.fbi.project.koma.data.Fach;
-import de.thb.fbi.project.koma.data.Fertigkeit;
-import de.thb.fbi.project.koma.repository.api.FachRepository;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.Set;
 
-public class JPAFachRepository extends JPANamedEntityRepository<Fach> implements FachRepository {
+public class JPAFachRepository implements FachRepository {
+	@PersistenceContext
+	private EntityManager em;
+
 
 	@Override
-	public List<Fach> findByFertigkeit(Fertigkeit fertigkeit) {
-		// TODO Auto-generated method stub
+	public Set<Fach> findByFertigkeit(Fertigkeit fertigkeit) {
 		return null;
 	}
-
 }

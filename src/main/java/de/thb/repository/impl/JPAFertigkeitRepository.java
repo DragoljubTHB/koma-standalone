@@ -1,22 +1,27 @@
-package de.thb.fbi.project.koma.repository.impl;
+package de.thb.repository.impl;
 
-import java.util.List;
+import de.thb.data.Fertigkeit;
+import de.thb.data.Kompetenz;
+import de.thb.repository.api.FertigkeitRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.HashSet;
+import java.util.Set;
 
-import de.thb.fbi.project.generic.repository.impl.JPANamedEntityRepository;
-import de.thb.fbi.project.koma.data.Fertigkeit;
-import de.thb.fbi.project.koma.data.Kompetenz;
-import de.thb.fbi.project.koma.repository.api.FertigkeitRepository;
+public class JPAFertigkeitRepository implements FertigkeitRepository {
 
-public class JPAFertigkeitRepository extends JPANamedEntityRepository<Fertigkeit> implements FertigkeitRepository {
+	@PersistenceContext
+	private EntityManager em;
+
 	@Override
-	public List<Fertigkeit> findByKompetenz(Kompetenz komp) {
+	public Set<Fertigkeit> findByKompetenz(Kompetenz komp) {
 		TypedQuery<Fertigkeit> query = em.createQuery("SELECT f FROM Fertigkeit f WHERE f.KompNiveau = :komp",
 				Fertigkeit.class);
 		query.setParameter("komp", komp);
 
-		return query.getResultList();
+		return new HashSet<>(query.getResultList());
 	}
 
 }
