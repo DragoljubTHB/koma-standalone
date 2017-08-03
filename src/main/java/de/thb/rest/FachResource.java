@@ -38,6 +38,7 @@ public class FachResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void createFach(@NotNull @Valid final Fach fach){
+        repo.create(fach);
         System.out.println("Fach: "+fach);
     }
 

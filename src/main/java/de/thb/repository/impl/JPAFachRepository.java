@@ -34,4 +34,9 @@ public class JPAFachRepository implements FachRepository {
 
 		return new HashSet<>(allQuery.getResultList());
 	}
+
+	@Override
+	public void create(Fach fach) {//todo: notnull
+		em.persist(fach);
+	}
 }

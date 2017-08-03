@@ -9,4 +9,6 @@ public interface FachRepository {
 	Set<Fach> findByFertigkeit(Fertigkeit fertigkeit);
 
 	Set<Fach> getAll();
+
+	void create(Fach fach);
 }
