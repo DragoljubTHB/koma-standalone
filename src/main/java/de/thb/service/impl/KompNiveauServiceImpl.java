@@ -1,23 +1,17 @@
 package de.thb.service.impl;
 
-import de.thb.fbi.project.generic.service.impl.NamedEntityServiceImpl;
-import de.thb.fbi.project.koma.data.KompNiveau;
-import de.thb.fbi.project.koma.repository.api.KompNiveauRepository;
-import de.thb.fbi.project.koma.service.api.KompNiveauService;
+
+import de.thb.data.KompNiveau;
+import de.thb.repository.api.KompNiveauRepository;
+import de.thb.service.api.KompNiveauService;
 
 import javax.inject.Inject;
 
-public class KompNiveauServiceImpl extends NamedEntityServiceImpl<KompNiveau, KompNiveauRepository>
+public class KompNiveauServiceImpl
 		implements KompNiveauService {
 
 	@Inject
 	private KompNiveauRepository knri;
-
-	@Override
-	protected KompNiveauRepository getRepositoryType() {
-
-		return knri;
-	}
 
 	@Override
 	public void umbenenne(String newName, String oldName) {

@@ -1,31 +1,23 @@
 package de.thb.service.impl;
 
-import de.thb.fbi.project.generic.service.impl.NamedEntityServiceImpl;
-import de.thb.fbi.project.koma.data.KompBereich;
-import de.thb.fbi.project.koma.data.SchluesselKomp;
-import de.thb.fbi.project.koma.repository.api.KompBereichRepository;
-import de.thb.fbi.project.koma.repository.api.SchluesselKompRepository;
-import de.thb.fbi.project.koma.service.api.SchluesselKompService;
-import org.slf4j.Logger;
+
+import de.thb.data.KompBereich;
+import de.thb.repository.api.KompBereichRepository;
+import de.thb.repository.api.SchluesselKompRepository;
+import de.thb.service.api.SchluesselKompService;
 
 import javax.inject.Inject;
-import java.util.List;
+import java.util.Set;
 
-public class SchluesselKompServiceImpl 
-extends NamedEntityServiceImpl<SchluesselKomp, SchluesselKompRepository>
+public class SchluesselKompServiceImpl
 implements SchluesselKompService {
 
-	@Inject private Logger logger;
-	
-	@Inject private SchluesselKompRepository schluessel;
+
+	@Inject
+	private SchluesselKompRepository schluessel;
 	
 	@Inject private KompBereichRepository kbri;
 	
-	@Override
-	protected SchluesselKompRepository getRepositoryType() {
-		return schluessel;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * @see de.thb.fbi.project.koma.service.api.SchluesselKompService#findFindKompetenzBereiche(de.thb.fbi.project.koma.data.SchluesselKomp)
@@ -33,10 +25,8 @@ implements SchluesselKompService {
 	 */
 	//TODO: edit
 	@Override
-	public List<KompBereich> findFindKompetenzBereiche(int aId) {
-		schluessel.findKompetenzBereiche(aId);
-		
-		return null;
+	public Set<KompBereich> findFindKompetenzBereiche(int aId) {
+		return schluessel.findKompetenzBereiche(aId);
 	}
 	
 	

@@ -1,20 +1,15 @@
 package de.thb.service.impl;
 
-import de.thb.fbi.project.generic.service.impl.NamedEntityServiceImpl;
-import de.thb.fbi.project.koma.data.Fertigkeit;
-import de.thb.fbi.project.koma.repository.impl.JPAFertigkeitRepository;
-import de.thb.fbi.project.koma.service.api.FertigkeitService;
+import de.thb.repository.api.FertigkeitRepository;
+import de.thb.repository.impl.JPAFertigkeitRepository;
+import de.thb.service.api.FertigkeitService;
 
 import javax.inject.Inject;
 
-public class FertigkeitServiceImpl extends NamedEntityServiceImpl<Fertigkeit, JPAFertigkeitRepository>
+public class FertigkeitServiceImpl
 		implements FertigkeitService {
 	@Inject
-	private JPAFertigkeitRepository jPAFertigkeitRepository;
+	private FertigkeitRepository jPAFertigkeitRepository;
 
-	@Override
-	protected JPAFertigkeitRepository getRepositoryType() {
-		return jPAFertigkeitRepository;
-	}
 
 }
